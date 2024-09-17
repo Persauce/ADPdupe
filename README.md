@@ -10,3 +10,4 @@ ________________________________________________________________________________
 - Develop a UI to do possibly implement 2 different ways:
     1. Display employee name with the window of the live camera and show either clocked in/clocked out when they show face
     2. Display the employee now has the power to either click clock in or clock out
+    3.idjflisdjf
