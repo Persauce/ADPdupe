@@ -5,7 +5,7 @@ ________________________________________________________________________________
 DEMO
 - Find a way to freeze it when it finds a face and then prompt the ui with the clocked in screen. 
 - so basically do like a 2 second counter and if majority of it is a certain name then pause it until a certain variable says to continue running??>?>>>>?????
-
+- WHAT HAPPENED TO MY DATA ANDREW
 
 
 - Take the name that the algorithm finds from the face after matching with the dataset and use it to clock into ADP using TimeCard API

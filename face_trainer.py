@@ -71,7 +71,7 @@ def getdata():
 
     return face_train,face_label
 
-# creating ".yml" file
+# creating .yml file
 face,ids = getdata()
 recognise.train(face, np.array(ids))
 recognise.save("trainner.yml")
