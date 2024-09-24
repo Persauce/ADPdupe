@@ -27,7 +27,7 @@ while True:
       
         ID, conf = recognise.predict(face_save)
        
-        if conf >= 20 and conf <= 115:
+        if conf >= 60 and conf <= 115:
             if count > 30:
                 transfer = {"name":ID}
                 print(json.dumps(transfer))
