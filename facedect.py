@@ -8,6 +8,7 @@ cascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
 
 recognise = cv2.face.LBPHFaceRecognizer_create()
 recognise.read("trainner.yml")
+output = open('result_scan.txt','w')
 
 labels = {} 
 with open("labels.pickle", 'rb') as f:##
@@ -29,6 +30,7 @@ while True:
        
         if conf >= 40 and conf <= 115:
             if count > 30:
+                
                 transfer = {"name":ID}
                 print(json.dumps(transfer))
                 count = 0
@@ -36,6 +38,7 @@ while True:
             if last == ID:
                 count = count + 1
             print(labels[ID])
+            output.write(labels[ID]+'\n')           
             cv2.putText(frame,labels[ID],(x-10,y-10),cv2.FONT_HERSHEY_COMPLEX ,1, (18,5,255), 2, cv2.LINE_AA )
             last = ID
         frame = cv2.rectangle(frame, (x,y), (x+w,y+h),(0,255,255),4)

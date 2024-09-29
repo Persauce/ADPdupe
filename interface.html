@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start Scan Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        .text-box {
+            width: 300px;
+            height: 50px;
+            border: 2px solid black;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+            background-color: #f0f0f0;
+        }
+
+        .start-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="text-box" id="text-box">Waiting to start...</div>
+    <button class="start-button" onclick="startScan()">Start Scan</button>
+</div>
+
+<script>
+    function startScan() {
+        
+        fetch('scan.php')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('text-box').innerText = data;
+        })
+    }
+</script>
+
+</body>
+</html>
