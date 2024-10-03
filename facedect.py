@@ -5,11 +5,11 @@ import cv2
 import pickle
 import json
 video = cv2.VideoCapture(0)
-cascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
+cascade = cv2.CascadeClassifier("/trainers/haarcascade_frontalface_default.xml")
 
 
 recognise = cv2.face.LBPHFaceRecognizer_create()
-recognise.read("trainner.yml")
+recognise.read("/trainers/trainner.yml")
 output = open('result_scan.txt','w')
 
 labels = {} 
@@ -42,7 +42,7 @@ while t:
             if last == ID:
                 count = count + 1
             print(labels[ID])
-            output.write(labels[ID]+'\n')           
+                      
             cv2.putText(frame,labels[ID],(x-10,y-10),cv2.FONT_HERSHEY_COMPLEX ,1, (18,5,255), 2, cv2.LINE_AA )
             last = ID
         frame = cv2.rectangle(frame, (x,y), (x+w,y+h),(0,255,255),4)
@@ -61,6 +61,7 @@ while t:
 #make it a counter to then use the function to find the most common name in the list aka most frequently detected name
 ctr= Counter(names.split()).most_common(1)
 print("hi, ", ctr[0][0])
+output.write(ctr[0][0]+'\n') 
 #end program
 video.release()
 cv2.destroyAllWindows()
