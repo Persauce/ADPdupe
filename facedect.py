@@ -1,4 +1,5 @@
 
+from collections import Counter
 import time
 import cv2
 import pickle
@@ -17,6 +18,7 @@ with open("labels.pickle", 'rb') as f:##
     labels = {v:k for k,v in og_label.items()}##
     print(labels)
     t=3
+names=""
 while t:
     check,frame = video.read()
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
@@ -44,6 +46,7 @@ while t:
             cv2.putText(frame,labels[ID],(x-10,y-10),cv2.FONT_HERSHEY_COMPLEX ,1, (18,5,255), 2, cv2.LINE_AA )
             last = ID
         frame = cv2.rectangle(frame, (x,y), (x+w,y+h),(0,255,255),4)
+        names= names+ " " +labels[ID]
     
     mins, secs = divmod(t, 60) 
     timer = '{:02d}:{:02d}'.format(mins, secs) 
@@ -55,6 +58,9 @@ while t:
     key = cv2.waitKey(1)
     if(key == ord('q')):
         break
-
+#make it a counter to then use the function to find the most common name in the list aka most frequently detected name
+ctr= Counter(names.split()).most_common(1)
+print("hi, ", ctr[0][0])
+#end program
 video.release()
 cv2.destroyAllWindows()
