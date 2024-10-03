@@ -1,4 +1,5 @@
 
+import time
 import cv2
 import pickle
 import json
@@ -15,7 +16,8 @@ with open("labels.pickle", 'rb') as f:##
     og_label = pickle.load(f)##
     labels = {v:k for k,v in og_label.items()}##
     print(labels)
-while True:
+    t=3
+while t:
     check,frame = video.read()
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
@@ -42,6 +44,12 @@ while True:
             cv2.putText(frame,labels[ID],(x-10,y-10),cv2.FONT_HERSHEY_COMPLEX ,1, (18,5,255), 2, cv2.LINE_AA )
             last = ID
         frame = cv2.rectangle(frame, (x,y), (x+w,y+h),(0,255,255),4)
+    
+    mins, secs = divmod(t, 60) 
+    timer = '{:02d}:{:02d}'.format(mins, secs) 
+    print(timer, end="\r") 
+    time.sleep(1) 
+    t -= 1
         
     cv2.imshow("Video",frame)
     key = cv2.waitKey(1)
